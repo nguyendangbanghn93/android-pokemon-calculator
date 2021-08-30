@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
             Intent nextScreen = new Intent(getApplicationContext(), Pokemon.class);
             startActivity(nextScreen);
         }
+        if (view.getId() == R.id.screenListView) {
+            Intent nextScreen = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(nextScreen);
+        }
     }
 
 

@@ -10,6 +10,12 @@
         android:layout_height="wrap_content"
         android:onClick="clickHandler"
         android:text="Screen Pokemon" />
+    <TextView
+        android:id="@+id/screenListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="clickHandler"
+        android:text="Screen List View" />
 
     <TextView
         android:layout_width="match_parent"
