@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -28,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.btnLogin:
+            case R.id.btnEdit:
                 onEdit();
                 break;
             default:
@@ -38,18 +39,18 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private void onEdit() {
         Intent intent = new Intent(this,EditUserActivity.class);
         intent.putExtra("USER_NAME",tvUser.getText().toString());
-        startActivity(intent);
         startActivityForResult(intent,REQUEST_CODE);
     }
+
     @Override
-    protected void onActivityForResult(int requestCode, int resultCode,Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if(requestCode==1){
-            if(requestCode==1){
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+                super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode==REQUEST_CODE){
+            if(resultCode==RESULT_OK){
                 String result = data.getStringExtra("RESULT");
                 tvUser.setText(result);
             }
         }
     }
-
 }
