@@ -5,36 +5,45 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    TextView textViewResult;
-    String result = "123456789";
+    ListView lvContact;
+    List<ContactModel> listContact = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textViewResult = (TextView) findViewById(R.id.textViewResult);
-        textViewResult.setText(result);
+        initData();
+        lvContact = (ListView) findViewById(R.id.lvContact);
+        ContactAdapter adapter = new ContactAdapter(listContact,this);
+        lvContact.setAdapter(adapter);
+        lvContact.setOnItemClickListener((new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ContactModel contactModel = listContact.get(i);
+                Toast.makeText(MainActivity.this, contactModel.getName(), Toast.LENGTH_SHORT).show();
+            }
+        }));
     }
 
-    public void clickHandler(View view) {
-        if (view.getId() == R.id.screenPokemon) {
-            Intent nextScreen = new Intent(getApplicationContext(), Pokemon.class);
-            startActivity(nextScreen);
-        }
-        if (view.getId() == R.id.screenListView) {
-            Intent nextScreen = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(nextScreen);
-        }
+    private void initData() {
+        listContact.add(new ContactModel("Phan Hồng Trường","0987654321",R.drawable.ic_avatar1));
+        listContact.add(new ContactModel("Phan Hồng Đức","0987654322",R.drawable.ic_avatar2));
+        listContact.add(new ContactModel("Phan Hồng Kiê","0987654323",R.drawable.ic_avatar3));
+        listContact.add(new ContactModel("Phan Hồng Huy","0987654324",R.drawable.ic_avatar4));
+        listContact.add(new ContactModel("Phan Hồng Hào","0987654325",R.drawable.ic_avatar1));
+        listContact.add(new ContactModel("Phan Hồng Tím","0987654326",R.drawable.ic_avatar2));
+        listContact.add(new ContactModel("Phan Hồng Đỏ","0987654327",R.drawable.ic_avatar3));
+        listContact.add(new ContactModel("Phan Hồng Vàng","0987654328",R.drawable.ic_avatar4));
     }
 
-
-    public void calculatorClickHandler(View view) {
-
-    }
 }
